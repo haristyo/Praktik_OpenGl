@@ -6,7 +6,7 @@ from OpenGL.GLU import *
 def suriken(indexX=0,indexY=0,scale=1):
     glBegin(GL_POLYGON)
     # suriken
-    # glVertex2f(0, 1) #klo ini pertama jadi rusak
+    # glVertex2f(indexX+(0* scale),indexY + (1* scale)) #klo ini pertama jadi rusak
     glVertex2f(indexX+( 0.25 * scale),indexY +(0.25 * scale))
     glVertex2f(indexX+( 1 * scale),indexY +( 0 * scale))
     glVertex2f(indexX+( 0.25 * scale),indexY +( (-0.25) * scale))
