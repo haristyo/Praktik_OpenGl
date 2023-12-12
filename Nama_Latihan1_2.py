@@ -3,41 +3,35 @@ from pygame.locals import *
 
 from OpenGL.GL import * 
 from OpenGL.GLU import *
-def Cube ():
-    glBegin (GL_TRIANGLES)
+def suriken(indexX=0,indexY=0,scale=1):
+    glBegin(GL_POLYGON)
     # suriken
-    glVertex2f(0, 1); 
-    glVertex2f(1, 1.25); 
-    glVertex2f(1, 2); 
-    glVertex2f(1.25, 1.25); 
-    glVertex2f(2, 1); 
-    # glVertex2f(0.25, -0.25); 
-    glVertex2f(1, 0); 
-    # glVertex2f(-0.25, -0.25); 
-    # glVertex2f(-1, 0); 
-    # glVertex2f(0, -1); 
-    # glVertex2f(1, 0); 
+    # glVertex2f(0, 1) #klo ini pertama jadi rusak
+    glVertex2f(indexX+( 0.25 * scale),indexY +(0.25 * scale))
+    glVertex2f(indexX+( 1 * scale),indexY +( 0 * scale))
+    glVertex2f(indexX+( 0.25 * scale),indexY +( (-0.25) * scale))
+    glVertex2f(indexX+(0 * scale),indexY +( (-1) * scale))
+    glVertex2f(indexX+(-0.25 * scale),indexY +( (-0.25) * scale))
+    glVertex2f(indexX+(-1 * scale),indexY +( 0 * scale))
+    glVertex2f(indexX+(-0.25 * scale),indexY +( 0.25 * scale))
     
-    # glVertex2f(-0.4, -0.4); 
-    # glVertex2f(-1.8, 1.8); 
-    # glVertex2f(0.3, 0.3); 
-    # glVertex2f(1.8, -1.8);
-    
-    # segi 8
-    # glVertex2f(0, 1)
-    # glVertex2f(0.5, 0.5)
-    # glVertex2f(1, 0)
-    # glVertex2f(0.8, -0.8)
-    # glVertex2f(0, -1)
-    # glVertex2f(-0.8, -0.8)
-    # glVertex2f(-1, 0)
-    # glVertex2f(-0.8, 0.8)
-     
+    glVertex2f(indexX+(0* scale),indexY + (1* scale)) #klo ini terakhir jadi bisa
     glEnd ()
-    
+
+def demokrat(indexX=0,indexY=0,scale=1):
+    glBegin(GL_POLYGON)
+    # demokrat
+    glVertex2f(indexX+(0.4*scale),indexY +((0.4)*scale))
+    glVertex2f(indexX+(1.1*scale),indexY +((-0.3)*scale))
+    glVertex2f(indexX+(0*scale),indexY +((-0.1)*scale))
+    glVertex2f(indexX+((-1.1)*scale),indexY +((-0.3)*scale))
+    glVertex2f(indexX+((-0.4)*scale),indexY +((0.4)*scale))
+    glVertex2f(indexX+(0*scale),indexY +((1.4)*scale))
+    glEnd ()
+
 def init():
-    glClearColor(0.7, 0.3, 0.22, 1.0); 
-    glColor3f(0.22, 0.9, 0.5); 
+    glClearColor(0, 0, 1, 1.0); 
+    glColor3f(1, 0,0); 
     glMatrixMode(GL_PROJECTION); 
     glLoadIdentity(); 
     glOrtho(-1.0,1.0,-1.0,1.0,-1.0,1.0)
@@ -59,7 +53,11 @@ def main():
                 pygame.quit()
                 quit ()
         glClear (GL_COLOR_BUFFER_BIT| GL_DEPTH_BUFFER_BIT)
-        Cube()
+        suriken(1.05,1.05,0.75)
+        suriken(-1.05,1.05,0.75)
+        suriken(1.05,-1.05,0.75)
+        suriken(-1.05,-1.05,0.75)
+        demokrat(0,0,0.5)
         pygame.display.flip()
         pygame.time.wait (10)
         
