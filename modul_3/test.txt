@@ -1,0 +1,35 @@
+import sys
+
+import pygame
+from pygame.locals import *
+
+from OpenGL.GL import *
+from OpenGL.GLU import *
+from OpenGL.GLUT import *
+
+glutInit(sys.argv)
+width, height = 640, 480
+pygame.init()
+pygame.display.set_mode((width, height), OPENGL | DOUBLEBUF)
+
+
+glMatrixMode(GL_PROJECTION)
+glLoadIdentity()
+gluPerspective(90.0, width/float(height), 1.0, 100.0)
+glMatrixMode(GL_MODELVIEW)
+glEnable(GL_DEPTH_TEST)
+
+quit = False
+angle = 0
+while not quit:
+    for e in pygame.event.get():
+        if e.type in (QUIT, KEYDOWN):
+            quit = True
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    glLoadIdentity()
+    glTranslate(0.0, 0.0, -2.5)
+    glRotate(angle, 0.0, 1.0, 0.0)
+    glUseProgram(program)
+    glutSolidTeapot(1.0)
+    angle += 0.1 
+    pygame.display.flip()
